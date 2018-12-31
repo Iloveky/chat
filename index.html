@@ -1,1 +1,49 @@
-hello
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>chat</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" type="text/css" media="screen" href="main.css" />
+    <script
+        src="https://code.jquery.com/jquery-1.12.4.min.js"
+        integrity="sha256-ZosEbRLbNQzLpnKIkEdrPv7lOy9C27hHQ+Xp8a4MxAQ="
+        crossorigin="anonymous">
+    </script>
+    <style type="text/css"> 
+        #divframe{ border:1px solid #999; width:500px; margin:0 auto;} 
+        .loadTitle{ background:#CCC; height:30px;} 
+        </style> 
+        <script type = "text/javascript" > 
+        $(function (){
+          $("#btn").click(function ()  {
+            $.getJSON("message.json", function (data){
+              var $jsontip = $("#jsonTip");
+              var strHtml = "123";
+              //存储数据的变量 
+              $jsontip.empty();
+              //清空内容 
+              $.each(data, function (infoIndex, info){
+                strHtml += "姓名：" + info["name"] + "<br>";
+                strHtml += "性别：" + info["sex"] + "<br>";
+                strHtml += "邮箱：" + info["email"] + "<br>";
+                strHtml += "<hr>" 
+              }) 
+              $jsontip.html(strHtml);
+              //显示处理后的数据 
+            }) 
+          }) 
+        })
+        </script> 
+</head>
+<body>
+    <div id="divframe"> 
+        <div class="loadTitle"> 
+        <input type="button" value="获取数据" id="btn"/> 
+        </div> 
+        <div id="jsonTip"> 
+        </div> 
+        </div>  
+</body>
+</html>
